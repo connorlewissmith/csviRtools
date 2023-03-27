@@ -32,3 +32,12 @@ test_that("pca_table errors with non-numeric input",
             expect_error(
               pca_table(test_df$Species, "Species"))
           })
+
+# Test that all columns besides the first are numeric
+test_that("columns are numeric", {
+  result <- pca_table(test_df, c("Sepal.Length", "Sepal.Width", "Petal.Length", "Petal.Width"))
+  expect_true(all(sapply(result[, -1], is.numeric)), info = "A column is not numeric")
+  expect_true(is.character(result[,1]), info = "The first column is not character")
+})
+
+

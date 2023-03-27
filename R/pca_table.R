@@ -33,6 +33,8 @@ pca_table <- function(df, cols) {
   # Calculate KMO of the correlation matrix
   loadings_table$variable_kmo <- as.data.frame(psych::KMO(cor_matrix)[2])
 
+  loadings_table$variable_kmo <-  as.numeric(loadings_table$variable_kmo[[1]])
+
   # Extract the Overall MSA value
   loadings_table$overall_msa <- psych::KMO(cor_matrix)$MSA
 
